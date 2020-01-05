@@ -1,10 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'test.dart';
+part of 'view_model.dart';
 
 // **************************************************************************
-// FlymeGenerator
+// RouteGenerator
 // **************************************************************************
 
-// Source library: package:flyme_generator/test/test.dart
-const topLevelNumVarCount = -1;
+String _$ViewModel = "";
+String get $ViewModel => _$ViewModel;
+set $ViewModel(String str) {
+  _$ViewModel = str;
+}

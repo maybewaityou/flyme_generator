@@ -18,10 +18,10 @@ builders:
 targets:
   $default:
     builders:
-      flyme_generator|flyme_generator_builder:
-        # enabled: true
-        generate_for:
-          - lib/**/*.dart
+      # flyme_generator|flyme_generator_builder:
+      #   # enabled: true
+      #   generate_for:
+      #     - lib/**/*.dart
       flyme_generator|route_generator_builder:
         # enabled: true
         generate_for:
