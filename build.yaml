@@ -2,21 +2,17 @@ builders:
   flyme_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["flymeGeneratorBuilder"]
-    # The `partId` argument to `SharedPartBuilder` is "some_cool_builder"
     build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
     build_to: cache
-    # To copy the `.g.part` content into `.g.dart` in the source tree
     applies_builders: ["source_gen|combining_builder"]
 
   route_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["routeGeneratorBuilder"]
-    # The `partId` argument to `SharedPartBuilder` is "some_cool_builder"
     build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
     build_to: cache
-    # To copy the `.g.part` content into `.g.dart` in the source tree
     applies_builders: ["source_gen|combining_builder"]
 
 targets:
