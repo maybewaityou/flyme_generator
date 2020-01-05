@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  analyzer: ^0.39.2+1
+  build: ^1.2.2
+  build_config: ^0.4.1+1
   source_gen: ^0.9.4+7
 
 dev_dependencies:
