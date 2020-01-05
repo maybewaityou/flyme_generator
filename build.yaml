@@ -22,10 +22,11 @@ builders:
 targets:
   $default:
     builders:
-      # Configure the builder `pkg_name|builder_name`
-      # In this case, the member_count builder defined in `../example`
+      flyme_generator|flyme_generator_builder:
+        # enabled: true
+        generate_for:
+          - lib/**/*.dart
       flyme_generator|route_generator_builder:
         # enabled: true
-        # Only run this builder on the specified input.
         generate_for:
           - lib/**/*.dart
