@@ -19,4 +19,4 @@ targets:
         # Only run this builder on the specified input.
         generate_for:
           # - lib/test/library_source.dart
-          - lib/**/*.dart
+          - lib/*.dart
