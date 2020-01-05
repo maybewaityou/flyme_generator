@@ -10,7 +10,7 @@
 /// This library is **not** intended to be imported by typical end-users unless
 /// you are creating a custom compilation pipeline. See documentation for
 /// details, and `build.yaml` for how these builders are configured by default.
-library source_gen_example.builder;
+library flyme_generator.builder;
 
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
@@ -18,4 +18,4 @@ import 'package:source_gen/source_gen.dart';
 import 'flyme_generator.dart';
 
 Builder flymeGeneratorBuilder(BuilderOptions options) =>
-    LibraryBuilder(FlymeGenerator(), generatedExtension: '.g.dart');
+    LibraryBuilder(FlymeGenerator(), generatedExtension: '.info.dart');
