@@ -1,0 +1,22 @@
+builders:
+  flyme_generator_builder:
+    import: "package:flyme_generator/builder.dart"
+    builder_factories: ["flymeGeneratorBuilder"]
+    # The `partId` argument to `SharedPartBuilder` is "some_cool_builder"
+    build_extensions: { ".dart": [".g.dart"] }
+    auto_apply: dependents
+    build_to: source
+    # To copy the `.g.part` content into `.g.dart` in the source tree
+    applies_builders: ["source_gen|combining_builder"]
+
+targets:
+  $default:
+    builders:
+      # Configure the builder `pkg_name|builder_name`
+      # In this case, the member_count builder defined in `../example`
+      flyme_generator|flyme_generator_builder:
+        # enabled: true
+        # Only run this builder on the specified input.
+        generate_for:
+          # - lib/test/library_source.dart
+          - lib/**/*.dart

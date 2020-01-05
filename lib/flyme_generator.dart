@@ -1,7 +1,14 @@
 library flyme_generator;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:build/build.dart';
+import 'package:source_gen/source_gen.dart';
+
+class FlymeGenerator extends Generator {
+  @override
+  String generate(LibraryReader library, BuildStep buildStep) {
+    return '''
+// Source library: ${library.element.source.uri}
+const topLevelNumVarCount = -1;
+''';
+  }
 }
