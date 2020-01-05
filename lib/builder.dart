@@ -18,4 +18,4 @@ import 'package:source_gen/source_gen.dart';
 import 'flyme_generator.dart';
 
 Builder flymeGeneratorBuilder(BuilderOptions options) =>
-    LibraryBuilder(FlymeGenerator(), generatedExtension: '.info.dart');
+    SharedPartBuilder([FlymeGenerator()], 'test');
