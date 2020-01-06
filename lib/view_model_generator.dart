@@ -40,13 +40,3 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
     return sb.toString();
   }
 }
-
-// class RouteGenerator extends GeneratorForAnnotation<Route> {
-//   @override
-//   String generateForAnnotatedElement(
-//       Element element, ConstantReader annotation, BuildStep buildStep) {
-//     final path = annotation.read('path').literalValue as String;
-
-//     return '// ${element.name} * $path;';
-//   }
-// }
