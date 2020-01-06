@@ -33,6 +33,7 @@ just see the code:
 ```dart
 import 'package:$PROJECT_NAME$/core/provider/view_model/view_model.dart';
 import 'package:flyme_annotation/flyme_annotation.dart';
+
 import 'user.dart';
 
 part '$VIEW_MODEL_FILE_NAME$.g.dart';
@@ -44,8 +45,8 @@ part '$VIEW_MODEL_FILE_NAME$.g.dart';
       name: "user",
       type: "User",
       initial: '''User(name: "", age: -1, email: "")'''),
-  Property(name: "haha", type: "String"),
-  Property(name: "asd", type: "String", initial: "Welcome"),
+  Property(name: "foo", type: "String"),
+  Property(name: "boo", type: "String", initial: "Welcome"),
 ])
 class TestModel extends _ViewModelProxy {
   String test = 'Hello Test';
@@ -104,17 +105,17 @@ class _ViewModelProxy extends ViewModel {
     notifyListeners();
   }
 
-  String _haha = null;
-  String get haha => _haha;
-  set haha(String args) {
-    _haha = args;
+  String _foo = null;
+  String get foo => _foo;
+  set foo(String args) {
+    _foo = args;
     notifyListeners();
   }
 
-  String _asd = "Welcome";
-  String get asd => _asd;
-  set asd(String args) {
-    _asd = args;
+  String _boo = "Welcome";
+  String get boo => _boo;
+  set boo(String args) {
+    _boo = args;
     notifyListeners();
   }
 }
