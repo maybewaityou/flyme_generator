@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flyme_annotation:
+    path: ../flyme_annotation
   analyzer: ^0.39.2+1
   build: ^1.2.2
   build_config: ^0.4.1+1

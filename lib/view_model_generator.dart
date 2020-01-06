@@ -4,9 +4,8 @@
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
+import 'package:flyme_annotation/flyme_annotation.dart';
 import 'package:source_gen/source_gen.dart';
-
-import 'annotations.dart';
 
 class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
   @override
