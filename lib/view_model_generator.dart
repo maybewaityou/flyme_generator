@@ -17,13 +17,13 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
 
     sb.writeln("class _ViewModelProxy extends ViewModel {");
     list.forEach((itemObj) {
-      final item = itemObj.toMapValue().map((key, value) {
-        return MapEntry(key.toStringValue(), value.toStringValue());
-      });
-
-      final name = item["name"];
-      final type = item["type"];
-      final initial = item["initial"];
+      final item = Property(
+          name: itemObj.getField("name").toStringValue(),
+          type: itemObj.getField("type").toStringValue(),
+          initial: itemObj.getField("initial").toStringValue());
+      final name = item.name;
+      final type = item.type;
+      final initial = item.initial;
       if (type == "String" && initial != null) {
         sb.writeln("$type _$name = \"$initial\";");
       } else {
