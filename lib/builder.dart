@@ -15,11 +15,7 @@ library flyme_generator.builder;
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 
-import 'flyme_generator.dart';
-import 'route_generator.dart';
+import 'view_model_generator.dart';
 
-Builder flymeGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([FlymeGenerator()], 'test');
-
-Builder routeGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([RouteGenerator()], 'route');
+Builder viewModelGeneratorBuilder(BuilderOptions options) =>
+    SharedPartBuilder([ViewModelGenerator()], 'route');

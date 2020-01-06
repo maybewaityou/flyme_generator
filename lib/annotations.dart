@@ -1,25 +1,4 @@
-class Route {
-  final String path;
-  const Route(this.path);
-}
-
-class Request {
-  const Request();
-}
-
-class ApiMethod {
-  final String url;
-  final String method;
-  final Map head;
-
-  const ApiMethod(this.url, this.method, {this.head});
-}
-
-class HttpRequestType {
-  static const String GET = "get";
-  static const String POST = "post";
-}
-
-class LivingString {
-  const LivingString();
+class Properties {
+  final List properties;
+  const Properties(this.properties);
 }

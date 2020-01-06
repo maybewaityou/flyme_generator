@@ -1,15 +1,7 @@
 builders:
-  flyme_generator_builder:
+  view_model_generator_builder:
     import: "package:flyme_generator/builder.dart"
-    builder_factories: ["flymeGeneratorBuilder"]
-    build_extensions: { ".dart": [".g.dart"] }
-    auto_apply: dependents
-    build_to: cache
-    applies_builders: ["source_gen|combining_builder"]
-
-  route_generator_builder:
-    import: "package:flyme_generator/builder.dart"
-    builder_factories: ["routeGeneratorBuilder"]
+    builder_factories: ["viewModelGeneratorBuilder"]
     build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
     build_to: cache
@@ -18,11 +10,7 @@ builders:
 targets:
   $default:
     builders:
-      # flyme_generator|flyme_generator_builder:
-      #   # enabled: true
-      #   generate_for:
-      #     - lib/**/*.dart
-      flyme_generator|route_generator_builder:
-        # enabled: true
-        generate_for:
-          - lib/**/*.dart
+      flyme_generator|view_model_generator_builder:
+         enabled: true
+#        generate_for:
+#          - lib/**/*.dart
