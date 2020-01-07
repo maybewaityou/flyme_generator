@@ -15,7 +15,7 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
     final list = annotation.objectValue.getField("properties").toListValue();
     StringBuffer sb = StringBuffer();
 
-    sb.writeln("class _ViewModelProxy extends ViewModel {");
+    sb.writeln("class _\$ViewModel extends ViewModel {");
     list.forEach((itemObj) {
       final name = itemObj.getField("name").toStringValue();
       final type = itemObj.getField("type").toTypeValue();
