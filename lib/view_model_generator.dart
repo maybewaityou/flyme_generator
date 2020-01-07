@@ -18,12 +18,12 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
     list.forEach((itemObj) {
       final item = Property(
           name: itemObj.getField("name").toStringValue(),
-          type: itemObj.getField("type").toStringValue(),
+          type: itemObj.getField("type").toTypeValue().runtimeType,
           initial: itemObj.getField("initial").toStringValue());
       final name = item.name;
       final type = item.type;
       final initial = item.initial;
-      if (type == "String" && initial != null) {
+      if (type == String && initial != null) {
         sb.writeln("$type _$name = \"$initial\";");
       } else {
         sb.writeln("$type _$name = $initial;");
