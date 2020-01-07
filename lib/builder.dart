@@ -18,4 +18,4 @@ import 'package:source_gen/source_gen.dart';
 import 'view_model_generator.dart';
 
 Builder viewModelGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([ViewModelGenerator()], 'route');
+    SharedPartBuilder([ViewModelGenerator()], 'view_model');

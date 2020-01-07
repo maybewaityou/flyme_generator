@@ -16,14 +16,10 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
 
     sb.writeln("class _ViewModelProxy extends ViewModel {");
     list.forEach((itemObj) {
-      final item = Property(
-          name: itemObj.getField("name").toStringValue(),
-          type: itemObj.getField("type").toTypeValue().runtimeType,
-          initial: itemObj.getField("initial").toStringValue());
-      final name = item.name;
-      final type = item.type;
-      final initial = item.initial;
-      if (type == String && initial != null) {
+      final name = itemObj.getField("name").toStringValue();
+      final type = itemObj.getField("type").toTypeValue();
+      final initial = itemObj.getField("initial").toStringValue();
+      if (type.isDartCoreString && initial != null) {
         sb.writeln("$type _$name = \"$initial\";");
       } else {
         sb.writeln("$type _$name = $initial;");
