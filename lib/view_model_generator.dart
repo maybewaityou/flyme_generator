@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/element/type.dart';
 import 'package:build/build.dart';
 import 'package:flyme_annotation/flyme_annotation.dart';
 import 'package:source_gen/source_gen.dart';
@@ -18,7 +19,8 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
     list.forEach((itemObj) {
       final name = itemObj.getField("name").toStringValue();
       final type = itemObj.getField("type").toTypeValue();
-      final initial = itemObj.getField("initial").toStringValue();
+      final initial =
+          unwrapInitial(type, itemObj.getField("initial").toStringValue());
       if (type.isDartCoreString && initial != null) {
         sb.writeln("$type _$name = \"$initial\";");
       } else {
@@ -35,4 +37,19 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
 
     return sb.toString();
   }
+}
+
+dynamic unwrapInitial(DartType type, dynamic value) {
+  if (value != null) return value;
+
+  if (type.isDartCoreString) {
+    return "";
+  } else if (type.isDartCoreBool) {
+    return "false";
+  } else if (type.isDartCoreNum ||
+      type.isDartCoreInt ||
+      type.isDartCoreDouble) {
+    return "0";
+  }
+  return value;
 }
