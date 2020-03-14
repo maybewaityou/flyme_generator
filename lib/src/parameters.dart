@@ -1,7 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart' as element_type;
 import 'package:code_builder/code_builder.dart';
-import 'package:functional_widget/findBeginToken.dart';
+import 'package:flyme_generator/findBeginToken.dart';
 
 class FunctionParameters {
   FunctionParameters._(this._parameters);
@@ -54,7 +54,7 @@ Reference _parameterToReference(ParameterElement element) {
   if (element.type == null) {
     return null;
   }
-  if (element.type.isUndefined) {
+  if (element.type.isDartCoreNull) {
     var token = findBeginToken(element);
     return refer(token.toString());
   }
