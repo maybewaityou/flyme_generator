@@ -14,8 +14,18 @@ library flyme_generator.builder;
 
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
-
-import 'view_model_generator.dart';
+import 'package:flyme_generator/src/utils.dart';
+import 'package:flyme_generator/view_model_generator.dart';
+import 'package:flyme_generator/function_to_widget_class.dart';
 
 Builder viewModelGeneratorBuilder(BuilderOptions options) =>
     SharedPartBuilder([ViewModelGenerator()], 'view_model');
+
+/// Builds generators for `build_runner` to run
+Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {
+  final parse = parseBuilderOptions(options);
+  return SharedPartBuilder(
+    [FunctionalWidgetGenerator(parse)],
+    'functional_widget',
+  );
+}

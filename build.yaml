@@ -6,9 +6,18 @@ builders:
     auto_apply: dependents
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]
+  functional_widget_generator_builder:
+    import: "package:flyme_generator/builder.dart"
+    builder_factories: ["functionalWidgetGeneratorBuilder"]
+    build_extensions: { ".dart": [".functional_widget.g.part"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
 
 targets:
   $default:
     builders:
       flyme_generator|view_model_generator_builder:
+        enabled: true
+      flyme_generator|functional_widget_generator_builder:
         enabled: true
