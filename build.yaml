@@ -4,7 +4,7 @@ builders:
     builder_factories: ["viewModelGeneratorBuilder"]
     build_extensions: { ".dart": [".view_model.dart"] }
     auto_apply: dependents
-    build_to: cache
+    build_to: source
     applies_builders: ["source_gen|combining_builder"]
   functional_widget_generator_builder:
     import: "package:flyme_generator/builder.dart"
