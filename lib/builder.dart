@@ -18,8 +18,10 @@ import 'package:flyme_generator/src/utils.dart';
 import 'package:flyme_generator/view_model_generator.dart';
 import 'package:flyme_generator/function_to_widget_class.dart';
 
+// Builder viewModelGeneratorBuilder(BuilderOptions options) =>
+//     SharedPartBuilder([ViewModelGenerator()], 'view_model');
 Builder viewModelGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([ViewModelGenerator()], 'view_model');
+    PartBuilder([ViewModelGenerator()], '.view_model.dart');
 
 /// Builds generators for `build_runner` to run
 Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {
