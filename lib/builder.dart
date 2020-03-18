@@ -21,17 +21,13 @@ import 'package:flyme_generator/function_to_widget_class.dart';
 // Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 //     SharedPartBuilder([ViewModelGenerator()], 'view_model');
 Builder viewModelGeneratorBuilder(BuilderOptions options) =>
-    PartBuilder([ViewModelGenerator()], '.flyme.g.dart');
+    PartBuilder([ViewModelGenerator()], '.flyme.dart');
 
 /// Builds generators for `build_runner` to run
 Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {
   final parse = parseBuilderOptions(options);
-  return PartBuilder(
+  return SharedPartBuilder(
     [FunctionalWidgetGenerator(parse)],
-    '.flyme.dart',
+    'functional_widget',
   );
-  // return SharedPartBuilder(
-  //   [FunctionalWidgetGenerator(parse)],
-  //   'functional_widget',
-  // );
 }
