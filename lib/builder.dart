@@ -28,7 +28,7 @@ Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {
   final parse = parseBuilderOptions(options);
   return PartBuilder(
     [FunctionalWidgetGenerator(parse)],
-    '.flyme.g.dart',
+    '.flyme.dart',
   );
   // return SharedPartBuilder(
   //   [FunctionalWidgetGenerator(parse)],
