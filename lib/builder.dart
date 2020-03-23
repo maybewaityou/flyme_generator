@@ -15,16 +15,22 @@ library flyme_generator.builder;
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:flyme_generator/src/utils.dart';
+import 'package:flyme_generator/route_generator.dart';
 import 'package:flyme_generator/view_model_generator.dart';
 import 'package:flyme_generator/function_to_widget_class.dart';
 
+/// view model generator builder
 Builder viewModelGeneratorBuilder(BuilderOptions options) =>
     SharedPartBuilder([ViewModelGenerator()], 'view_model');
 
 // Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 //     PartBuilder([ViewModelGenerator()], '.flyme.dart');
 
-/// Builds generators for `build_runner` to run
+/// route generator builder
+Builder routeGeneratorBuilder(BuilderOptions options) =>
+    SharedPartBuilder([RouteGenerator()], 'route');
+
+/// functional widget generator builder
 Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {
   final parse = parseBuilderOptions(options);
   return SharedPartBuilder(
