@@ -12,14 +12,7 @@ import 'package:flyme_generator/src/route/collector.dart';
 import 'package:flyme_generator/src/route/writer.dart';
 import 'package:source_gen/source_gen.dart';
 
-class RouteConfig {}
-
-class Route {
-  final String url;
-  const Route({this.url});
-}
-
-class RouteGenerator implements GeneratorForAnnotation<Route> {
+class RouteGenerator implements GeneratorForAnnotation<FRoute> {
   static Collector collector = Collector();
 
   @override
@@ -35,10 +28,10 @@ class RouteGenerator implements GeneratorForAnnotation<Route> {
   }
 
   @override
-  TypeChecker get typeChecker => TypeChecker.fromRuntime(Route);
+  TypeChecker get typeChecker => TypeChecker.fromRuntime(FRoute);
 }
 
-class RouteConfigGenerator implements GeneratorForAnnotation<RouteConfig> {
+class RouteConfigGenerator implements GeneratorForAnnotation<FRouteConfig> {
   Collector collector() {
     return RouteGenerator.collector;
   }
@@ -55,5 +48,5 @@ class RouteConfigGenerator implements GeneratorForAnnotation<RouteConfig> {
   }
 
   @override
-  TypeChecker get typeChecker => TypeChecker.fromRuntime(RouteConfig);
+  TypeChecker get typeChecker => TypeChecker.fromRuntime(FRouteConfig);
 }
