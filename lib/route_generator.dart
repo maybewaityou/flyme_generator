@@ -10,6 +10,7 @@ import 'package:flyme_annotation/flyme_annotation.dart';
 import 'package:flyme_generator/src/route/collector.dart';
 import 'package:flyme_generator/src/route/writer.dart';
 import 'package:source_gen/source_gen.dart';
+import 'package:source_gen/src/output_helpers.dart';
 
 class RouteGenerator implements GeneratorForAnnotation<FRoute> {
   static Collector collector = Collector();
@@ -20,6 +21,22 @@ class RouteGenerator implements GeneratorForAnnotation<FRoute> {
     collector.collect(element, annotation, buildStep);
     print('== routerMap ===>>>> ${collector.routerMap.toString()}');
     return null;
+  }
+
+  @override
+  FutureOr<String> generate(LibraryReader library, BuildStep buildStep) async {
+    final values = <String>{};
+
+    for (var annotatedElement in library.annotatedWith(typeChecker)) {
+      final generatedValue = generateForAnnotatedElement(
+          annotatedElement.element, annotatedElement.annotation, buildStep);
+      await for (var value in normalizeGeneratorOutput(generatedValue)) {
+        assert(value == null || (value.length == value.trim().length));
+        values.add(value);
+      }
+    }
+
+    return values.join('\n\n');
   }
 
   @override
@@ -35,6 +52,22 @@ class RouteConfigGenerator implements GeneratorForAnnotation<FRouteConfig> {
   dynamic generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     return Writer(collector()).write();
+  }
+
+  @override
+  FutureOr<String> generate(LibraryReader library, BuildStep buildStep) async {
+    final values = <String>{};
+
+    for (var annotatedElement in library.annotatedWith(typeChecker)) {
+      final generatedValue = generateForAnnotatedElement(
+          annotatedElement.element, annotatedElement.annotation, buildStep);
+      await for (var value in normalizeGeneratorOutput(generatedValue)) {
+        assert(value == null || (value.length == value.trim().length));
+        values.add(value);
+      }
+    }
+
+    return values.join('\n\n');
   }
 
   @override
