@@ -177,7 +177,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c75bfa96ee2ad6c128a419cd41a086b5f9b98a8a
+      resolved-ref: "72b3f1e2e628aabf17a1d9cb0e2ef1303dc65538"
       url: "https://github.com/maybewaityou/flyme_annotation.git"
     source: git
     version: "0.0.1"
@@ -299,7 +299,7 @@ packages:
       name: package_config
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.9.1"
+    version: "1.9.2"
   package_resolver:
     dependency: transitive
     description:
@@ -341,7 +341,7 @@ packages:
       name: pub_semver
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.4.3"
+    version: "1.4.4"
   pubspec_parse:
     dependency: transitive
     description:
