@@ -23,11 +23,6 @@ class RouteGenerator implements GeneratorForAnnotation<FRoute> {
   }
 
   @override
-  FutureOr<String> generate(LibraryReader library, BuildStep buildStep) {
-    return null;
-  }
-
-  @override
   TypeChecker get typeChecker => TypeChecker.fromRuntime(FRoute);
 }
 
@@ -40,11 +35,6 @@ class RouteConfigGenerator implements GeneratorForAnnotation<FRouteConfig> {
   dynamic generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     return Writer(collector()).write();
-  }
-
-  @override
-  FutureOr<String> generate(LibraryReader library, BuildStep buildStep) {
-    return null;
   }
 
   @override
