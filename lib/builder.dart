@@ -27,8 +27,11 @@ Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 //     PartBuilder([ViewModelGenerator()], '.flyme.dart');
 
 /// route generator builder
+Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
+    LibraryBuilder(RouteConfigGenerator(),
+        generatedExtension: '.route_config.dart');
 Builder routeGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([RouteGenerator()], 'route');
+    LibraryBuilder(RouteGenerator(), generatedExtension: '.route.dart');
 
 /// functional widget generator builder
 Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {

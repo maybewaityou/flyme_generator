@@ -2,54 +2,58 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:async';
+
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:build/build.dart';
 import 'package:flyme_annotation/flyme_annotation.dart';
+import 'package:flyme_generator/src/route/collector.dart';
+import 'package:flyme_generator/src/route/writer.dart';
 import 'package:source_gen/source_gen.dart';
 
-class RouteGenerator extends GeneratorForAnnotation<Properties> {
-  @override
-  String generateForAnnotatedElement(
-      Element element, ConstantReader annotation, BuildStep buildStep) {
-    final list = annotation.objectValue.getField("properties").toListValue();
-    StringBuffer sb = StringBuffer();
+class RouteConfig {}
 
-    sb.writeln("class _\$ViewModel extends ViewModel {");
-    list.forEach((itemObj) {
-      final name = itemObj.getField("name").toStringValue();
-      final type = itemObj.getField("type").toTypeValue();
-      final initial =
-          unwrapInitial(type, itemObj.getField("initial").toStringValue());
-      if (type.isDartCoreString && initial != null) {
-        sb.writeln("$type _$name = \"$initial\";");
-      } else {
-        sb.writeln("$type _$name = $initial;");
-      }
-      sb.writeln("$type get $name => _$name;");
-      sb.writeln("set $name($type args) {");
-      sb.writeln("  _$name = args;");
-      sb.writeln("  notifyListeners();");
-      sb.writeln("}");
-      sb.writeln("\n");
-    });
-    sb.writeln("}");
-
-    return sb.toString();
-  }
+class Route {
+  final String path;
+  const Route({this.path});
 }
 
-dynamic unwrapInitial(DartType type, dynamic value) {
-  if (value != null) return value;
+class RouteGenerator implements GeneratorForAnnotation<Route> {
+  static Collector collector = Collector();
 
-  if (type.isDartCoreString) {
-    return "";
-  } else if (type.isDartCoreBool) {
-    return "false";
-  } else if (type.isDartCoreNum ||
-      type.isDartCoreInt ||
-      type.isDartCoreDouble) {
-    return "0";
+  @override
+  dynamic generateForAnnotatedElement(
+      Element element, ConstantReader annotation, BuildStep buildStep) {
+    collector.collect(element, annotation, buildStep);
+    return null;
   }
-  return value;
+
+  @override
+  FutureOr<String> generate(LibraryReader library, BuildStep buildStep) {
+    return null;
+  }
+
+  @override
+  TypeChecker get typeChecker => TypeChecker.fromRuntime(Route);
+}
+
+class RouteConfigGenerator implements GeneratorForAnnotation<RouteConfig> {
+  Collector collector() {
+    return RouteGenerator.collector;
+  }
+
+  @override
+  dynamic generateForAnnotatedElement(
+      Element element, ConstantReader annotation, BuildStep buildStep) {
+    return Writer(collector()).write();
+  }
+
+  @override
+  FutureOr<String> generate(LibraryReader library, BuildStep buildStep) {
+    return null;
+  }
+
+  @override
+  TypeChecker get typeChecker => TypeChecker.fromRuntime(RouteConfig);
 }
