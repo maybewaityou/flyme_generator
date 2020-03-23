@@ -8,6 +8,13 @@ builders:
     # build_to: source
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]
+  route_config_generator_builder:
+    import: "package:flyme_generator/builder.dart"
+    builder_factories: ["routeConfigGeneratorBuilder"]
+    build_extensions: { ".dart": [".g.dart"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
   route_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["routeGeneratorBuilder"]
@@ -27,6 +34,8 @@ targets:
   $default:
     builders:
       flyme_generator|view_model_generator_builder:
+        enabled: true
+      flyme_generator|route_config_generator_builder:
         enabled: true
       flyme_generator|route_generator_builder:
         enabled: true
