@@ -15,8 +15,8 @@ import 'package:source_gen/source_gen.dart';
 class RouteConfig {}
 
 class Route {
-  final String path;
-  const Route({this.path});
+  final String url;
+  const Route({this.url});
 }
 
 class RouteGenerator implements GeneratorForAnnotation<Route> {
