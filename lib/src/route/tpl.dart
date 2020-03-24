@@ -4,7 +4,7 @@ import 'package:fluro/fluro.dart';
 import '{{{path}}}';
 {{/refs}}
 
-class AppRoutePath {
+class AppRoutesPath {
   {{#pages}}
   static const {{{fieldName}}} = {{{url}}},
   {{/pages}}
@@ -12,7 +12,7 @@ class AppRoutePath {
 
 final _routesMap = {
   {{#pages}}
-  AppRoutePath.{{{fieldName}}}: (params) => {{{page}}},
+  AppRoutesPath.{{{fieldName}}}: (params) => {{{page}}},
   {{/pages}}
 };
 
