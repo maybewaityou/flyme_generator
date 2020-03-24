@@ -14,6 +14,7 @@ class Writer {
       refs.add(<String, String>{'path': path});
     };
     final Function addPage = (key, List<Map<String, dynamic>> value) {
+      print('== value ===>>>> $value');
       pages.add(<String, String>{
         'path': key,
         'page': value.first[key],
