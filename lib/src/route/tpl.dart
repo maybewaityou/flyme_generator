@@ -1,9 +1,9 @@
-const String clazzTpl = """
-import 'package:fluro/fluro.dart';
-{{#refs}}
-import '{{{path}}}';
-{{/refs}}
+// import 'package:fluro/fluro.dart';
+// {{#refs}}
+// import '{{{path}}}';
+// {{/refs}}
 
+const String clazzTpl = """
 class AppRoutesPath {
   {{#pages}}
   static const {{{fieldName}}} = {{{url}}};
