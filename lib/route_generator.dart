@@ -19,7 +19,6 @@ class RouteGenerator implements GeneratorForAnnotation<FRoute> {
   dynamic generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     collector.collect(element, annotation, buildStep);
-    print('== routerMap ===>>>> ${collector.routerMap.toString()}');
     return null;
   }
 

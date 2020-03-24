@@ -19,6 +19,7 @@ dependencies:
   source_gen: ^0.9.4+7
   code_builder: ^3.2.1
   dart_style: ^1.3.3
+  mustache4dart: any
 
 dev_dependencies:
   flutter_test:
