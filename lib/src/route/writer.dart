@@ -7,6 +7,10 @@ class Writer {
   Collector collector;
   Writer(this.collector);
 
+  String instanceCreated() {
+    return instanceCreatedTpl;
+  }
+
   String instanceFromClazz() {
     final StringBuffer buffer = new StringBuffer();
     buffer..writeln('switch(clazz) {');
@@ -33,10 +37,8 @@ class Writer {
     final Function addRef = (String path) {
       refs.add(<String, String>{'path': path});
     };
-    print(
-        '== collector.routerMap.toString() ===>>>> ${collector.routerMap.toString()}');
     collector.importList.forEach(addRef);
-
+    print('== collector ===>>>> $collector');
     return render(clazzTpl,
         <String, dynamic>{'routerMap': collector.routerMap.toString()});
   }
