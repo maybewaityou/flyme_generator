@@ -1,3 +1,6 @@
+import 'package:flyme_generator/src/route/tpl.dart';
+import 'package:mustache4dart/mustache4dart.dart';
+
 import 'collector.dart';
 
 class Writer {
@@ -32,12 +35,9 @@ class Writer {
     };
     print(
         '== collector.routerMap.toString() ===>>>> ${collector.routerMap.toString()}');
-    // collector.importList.forEach(addRef);
-    // return render(clazzTpl, <String, dynamic>{
-    //   'refs': refs,
-    //   'instanceCreated': instanceCreated(),
-    //   'instanceFromClazz': instanceFromClazz(),
-    //   'routerMap': collector.routerMap.toString()
-    // });
+    collector.importList.forEach(addRef);
+
+    return render(clazzTpl,
+        <String, dynamic>{'routerMap': collector.routerMap.toString()});
   }
 }
