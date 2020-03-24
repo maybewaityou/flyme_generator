@@ -1,7 +1,7 @@
+import 'package:flyme_generator/src/functional.dart';
+import 'package:flyme_generator/src/route/collector.dart';
 import 'package:flyme_generator/src/route/tpl.dart';
 import 'package:mustache4dart/mustache4dart.dart';
-
-import 'collector.dart';
 
 class Writer {
   Collector collector;
@@ -15,16 +15,17 @@ class Writer {
     };
     final Function addPage = (key, List<Map<String, dynamic>> value) {
       final target = value.first;
+      final fieldName = camelize(key.substring(1, key.length));
       if (target['params'] != null) {
         pages.add(<String, String>{
           'url': key,
-          'fieldName': key,
+          'fieldName': fieldName,
           'page': '${target["clazz"]}(params)',
         });
       } else {
         pages.add(<String, String>{
           'url': key,
-          'fieldName': key,
+          'fieldName': fieldName,
           'page': '${target["clazz"]}()',
         });
       }
