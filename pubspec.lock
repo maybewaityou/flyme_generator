@@ -279,6 +279,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.9.6+3"
+  mustache4dart:
+    dependency: "direct main"
+    description:
+      name: mustache4dart
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0-dev.1.0"
   node_interop:
     dependency: transitive
     description:
@@ -356,6 +363,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.5"
+  reflectable:
+    dependency: transitive
+    description:
+      name: reflectable
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.3"
   shelf:
     dependency: transitive
     description:
