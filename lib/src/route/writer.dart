@@ -15,7 +15,7 @@ class Writer {
     };
     final Function addPage = (key, List<Map<String, dynamic>> value) {
       final target = value.first;
-      final fieldName = camelize(key.substring(1, key.length));
+      final fieldName = camelize(key.substring(2, key.length - 1));
       if (target['params'] != null) {
         pages.add(<String, String>{
           'url': key,
