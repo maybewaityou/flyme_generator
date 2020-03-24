@@ -16,6 +16,9 @@ class Writer {
     final Function addPage = (key, List<Map<String, dynamic>> value) {
       final target = value.first;
       final fieldName = camelize(key.substring(2, key.length - 1));
+
+      if (isNotFoundUrl(key.toString())) return;
+
       if (target['params'] != null) {
         pages.add(<String, String>{
           'url': key,
@@ -33,11 +36,17 @@ class Writer {
     collector.importList.forEach(addRef);
     collector.routerMap.forEach(addPage);
 
-    print('== pages ===>>>> ${pages.toString()}');
     return render(clazzTpl, <String, dynamic>{
       'refs': refs,
       'pages': pages,
       'routerMap': collector.routerMap.toString(),
     });
   }
+}
+
+bool isNotFoundUrl(String url) {
+  return url.contains('NotFound') ||
+      url.contains('notFound') ||
+      url.contains('not-found') ||
+      url.contains('not_found');
 }
