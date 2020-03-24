@@ -36,6 +36,7 @@ class Writer {
     final List<Map<String, String>> refs = <Map<String, String>>[];
     final Function addRef = (String path) {
       refs.add(<String, String>{'path': path});
+      print('== path ===>>>> $path');
     };
     collector.importList.forEach(addRef);
     print('== collector ===>>>> $collector');
