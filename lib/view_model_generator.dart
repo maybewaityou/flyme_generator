@@ -18,14 +18,21 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
     sb.writeln("class _\$ViewModel extends ViewModel {");
     list.forEach((itemObj) {
       final name = itemObj.getField("name").toStringValue();
-      final type = itemObj.getField("type").toTypeValue();
-      final initial =
-          unwrapInitial(type, itemObj.getField("initial").toStringValue());
-      if (type.isDartCoreString && initial != null) {
+      final originType = itemObj.getField("type").toTypeValue();
+      final generic = itemObj.getField("generic").toTypeValue();
+      final initial = unwrapInitial(
+          originType, itemObj.getField("initial").toStringValue());
+
+      var type = "$originType";
+
+      if (originType.isDartCoreString && initial != null) {
         sb.writeln("$type _$name = \"$initial\";");
       } else {
+        if (generic != null) type = "$type<$generic>";
+
         sb.writeln("$type _$name = $initial;");
       }
+
       sb.writeln("$type get $name => _$name;");
       sb.writeln("set $name($type args) {");
       sb.writeln("  _$name = args;");
