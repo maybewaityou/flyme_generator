@@ -16,15 +16,10 @@ class Writer {
     final Function addPage = (key, List<Map<String, dynamic>> value) {
       final target = value.first;
       if (target['params']) {
-        pages.add(<String, String>{
-          'url': key,
-          'page': '${target["clazz"]}(params)',
-        });
+        pages.add(
+            <String, String>{'url': key, 'page': '${target["clazz"]}(params)'});
       } else {
-        pages.add(<String, String>{
-          'url': key,
-          'page': '${target["clazz"]}()',
-        });
+        pages.add(<String, String>{'url': key, 'page': '${target["clazz"]}()'});
       }
     };
     collector.importList.forEach(addRef);
