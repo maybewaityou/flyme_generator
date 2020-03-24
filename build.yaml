@@ -11,21 +11,15 @@ builders:
   route_config_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["routeConfigGeneratorBuilder"]
-    build_extensions: { ".dart": [".g.dart"] }
-    auto_apply: dependents
-    build_to: cache
-    # build_extensions: { ".dart": [".route.dart"] }
-    # auto_apply: root_package
-    # build_to: source
+    build_extensions: { ".dart": [".config.dart"] }
+    auto_apply: root_package
+    build_to: source
   route_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["routeGeneratorBuilder"]
-    build_extensions: { ".dart": [".g.dart"] }
-    auto_apply: dependents
-    build_to: cache
-    # build_extensions: { ".dart": [".route.dart"] }
-    # auto_apply: root_package
-    # build_to: source
+    build_extensions: { ".dart": [".route.dart"] }
+    auto_apply: root_package
+    build_to: source
     runs_before: ["flyme_generator|route_config_generator_builder"]
   functional_widget_generator_builder:
     import: "package:flyme_generator/builder.dart"

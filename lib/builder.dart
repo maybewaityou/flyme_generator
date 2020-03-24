@@ -28,15 +28,9 @@ Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 
 /// route generator builder
 Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([RouteConfigGenerator()], 'route_config');
+    LibraryBuilder(RouteConfigGenerator(), generatedExtension: '.config.dart');
 Builder routeGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([RouteGenerator()], 'route');
-
-// Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
-//     LibraryBuilder(RouteConfigGenerator(),
-//         generatedExtension: '.route_config.dart');
-// Builder routeGeneratorBuilder(BuilderOptions options) =>
-//     LibraryBuilder(RouteGenerator(), generatedExtension: '.route.dart');
+    LibraryBuilder(RouteGenerator(), generatedExtension: '.route.dart');
 
 /// functional widget generator builder
 Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {
