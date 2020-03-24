@@ -45,7 +45,8 @@ class Writer {
 }
 
 String getFieldName(String string) {
-  return camelize(string.split('/').last);
+  final last = string.split('/').last;
+  return camelize(last.substring(0, last.length - 1));
 }
 
 bool isNotFoundUrl(String url) {
