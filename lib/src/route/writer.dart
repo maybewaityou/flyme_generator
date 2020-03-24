@@ -36,11 +36,16 @@ class Writer {
     final List<Map<String, String>> refs = <Map<String, String>>[];
     final Function addRef = (String path) {
       refs.add(<String, String>{'path': path});
-      print('== path ===>>>> $path');
     };
     collector.importList.forEach(addRef);
-    print('== collector ===>>>> $collector');
-    return render(clazzTpl,
-        <String, dynamic>{'routerMap': collector.routerMap.toString()});
+    final pages =
+        collector.routerMap.map((key, value) => MapEntry(key, value[0]));
+    print('== pages ===>>>> ${pages.toString()}');
+    print('== collector ===>>>> ${collector.routerMap.toString()}');
+    return render(clazzTpl, <String, dynamic>{
+      'refs': refs,
+      'pages': pages,
+      'routerMap': collector.routerMap.toString(),
+    });
   }
 }
