@@ -16,7 +16,7 @@ class Writer {
     final Function addPage = (key, List<Map<String, dynamic>> value) {
       pages.add(<String, String>{
         'path': key,
-        'value': '${value.first[key]}()',
+        'value': '${value.first["clazz"]}()',
       });
     };
     collector.importList.forEach(addRef);
