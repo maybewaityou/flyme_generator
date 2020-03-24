@@ -10,7 +10,6 @@ class AppRoutePath {
   {{/pages}}
 }
 
-
 final _routesMap = {
   {{#pages}}
   AppRoutePath.{{{fieldName}}}: (params) => {{{page}}},
