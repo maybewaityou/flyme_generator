@@ -15,7 +15,7 @@ class Writer {
     };
     final Function addPage = (key, List<Map<String, dynamic>> value) {
       final target = value.first;
-      final fieldName = camelize(key.substring(2, key.length - 1));
+      final fieldName = getFieldName(key);
 
       if (isNotFoundUrl(key.toString())) return;
 
@@ -42,6 +42,10 @@ class Writer {
       'routerMap': collector.routerMap.toString(),
     });
   }
+}
+
+String getFieldName(String string) {
+  return camelize(string.split('/').last);
 }
 
 bool isNotFoundUrl(String url) {
