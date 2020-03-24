@@ -17,6 +17,7 @@ final _routesMap = {
 };
 
 void setupRoutes(Router router) {
+  router.notFoundHandler = _notFoundHandler;
   _routesMap.forEach((key, pageBuilder) {
     router.define(
       key,
@@ -24,5 +25,8 @@ void setupRoutes(Router router) {
     );
   });
 }
+
+final _notFoundHandler =
+    Handler(handlerFunc: (context, params) => NotFoundPage());
 
 """;
