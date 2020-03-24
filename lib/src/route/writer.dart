@@ -14,10 +14,18 @@ class Writer {
       refs.add(<String, String>{'path': path});
     };
     final Function addPage = (key, List<Map<String, dynamic>> value) {
-      pages.add(<String, String>{
-        'path': key,
-        'value': '${value.first["clazz"]}()',
-      });
+      final target = value.first;
+      if (target['params'] == null) {
+        pages.add(<String, String>{
+          'url': key,
+          'page': '${target["clazz"]}(params)',
+        });
+      } else {
+        pages.add(<String, String>{
+          'url': key,
+          'page': '${target["clazz"]}()',
+        });
+      }
     };
     collector.importList.forEach(addRef);
     collector.routerMap.forEach(addPage);

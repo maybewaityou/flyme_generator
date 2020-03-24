@@ -6,7 +6,7 @@ import '{{{path}}}';
 
 final _routesMap = {
   {{#pages}}
-  {{{path}}}: (params) => {{{value}}},
+  {{{url}}}: (params) => {{{page}}},
   {{/pages}}
 };
 
