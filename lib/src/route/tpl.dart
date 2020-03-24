@@ -6,7 +6,7 @@ import '{{{path}}}';
 
 class AppRoutesPath {
   {{#pages}}
-  static const {{{fieldName}}} = {{{url}}},
+  static const {{{fieldName}}} = {{{url}}};
   {{/pages}}
 }
 
