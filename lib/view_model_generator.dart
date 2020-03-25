@@ -39,6 +39,7 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
       sb.writeln("\n");
 
       output.write(sb.toString().replaceAll("<dynamic>", "<$generic>"));
+      sb.clear();
     });
     output.writeln("}");
 
