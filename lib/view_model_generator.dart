@@ -28,7 +28,7 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
       if (initial == null) {
         sb.writeln("$type _$name;");
       } else if (type.isDartCoreString && initial != null) {
-        sb.writeln("$type _$name = \"$initial\";");
+        sb.writeln("$type _$name = '$initial';");
       } else {
         sb.writeln("$type _$name = $initial;");
       }
