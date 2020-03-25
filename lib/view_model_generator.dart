@@ -20,6 +20,7 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
       final name = itemObj.getField("name").toStringValue();
       final type = itemObj.getField("type").toTypeValue();
       final generic = itemObj.getField("generic").toTypeValue();
+
       final initial =
           unwrapInitial(type, itemObj.getField("initial").toStringValue());
 
@@ -35,6 +36,9 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
       sb.writeln("  notifyListeners();");
       sb.writeln("}");
       sb.writeln("\n");
+      sb.clear();
+
+      sb.write(sb.toString().replaceAll("<dynamic>", "<$generic>"));
     });
     sb.writeln("}");
 
