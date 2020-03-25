@@ -13,9 +13,10 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     final list = annotation.objectValue.getField("properties").toListValue();
+    StringBuffer output = StringBuffer();
     StringBuffer sb = StringBuffer();
 
-    sb.writeln("class _\$ViewModel extends ViewModel {");
+    output.writeln("class _\$ViewModel extends ViewModel {");
     list.forEach((itemObj) {
       final name = itemObj.getField("name").toStringValue();
       final type = itemObj.getField("type").toTypeValue();
@@ -36,13 +37,12 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
       sb.writeln("  notifyListeners();");
       sb.writeln("}");
       sb.writeln("\n");
-      sb.clear();
 
-      sb.write(sb.toString().replaceAll("<dynamic>", "<$generic>"));
+      output.write(sb.toString().replaceAll("<dynamic>", "<$generic>"));
     });
-    sb.writeln("}");
+    output.writeln("}");
 
-    return sb.toString();
+    return output.toString();
   }
 }
 
