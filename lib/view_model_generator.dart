@@ -25,7 +25,9 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
       final initial =
           unwrapInitial(type, itemObj.getField("initial").toStringValue());
 
-      if (type.isDartCoreString && initial != null) {
+      if (initial == null) {
+        sb.writeln("$type _$name;");
+      } else if (type.isDartCoreString && initial != null) {
         sb.writeln("$type _$name = \"$initial\";");
       } else {
         sb.writeln("$type _$name = $initial;");
