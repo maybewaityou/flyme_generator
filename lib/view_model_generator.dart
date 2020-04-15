@@ -71,7 +71,7 @@ String _parsePropertyType(DartObject item) {
 Field _parseItem2Field(DartObject item) {
   final name = item.getField('name').toStringValue();
   final propertyType = item.getField('type').toTypeValue();
-  // final description = item.getField('description').toStringValue();
+  // final desc = item.getField('desc').toStringValue();
 
   final type = _parsePropertyType(item);
   final initial =
