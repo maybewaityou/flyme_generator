@@ -81,7 +81,7 @@ Field _parseItem2Field(DartObject item) {
       ..name = '_$name'
       ..type = refer(type);
     if (initial.isNotEmpty) {
-      b..assignment = Code(initial);
+      b..assignment = Code('$initial');
     }
     return b;
   });
