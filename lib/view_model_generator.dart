@@ -76,16 +76,16 @@ Field _parseItem2Field(DartObject item) {
   final initial =
       _unwrapInitial(propertyType, item.getField("initial").toStringValue());
 
-  print('== initial ===>>>> $initial');
-  print('== Code(initial) ===>>>> ${Code(initial)}');
-  print('== Code("initial") ===>>>> ${Code("$initial")}');
-
   return Field((b) {
     b
       ..name = '_$name'
       ..type = refer(type);
     if (initial.isNotEmpty) {
-      b..assignment = Code(initial);
+      if (propertyType.isDartCoreString) {
+        b..assignment = Code("'$initial'");
+      } else {
+        b..assignment = Code(initial);
+      }
     }
     return b;
   });
