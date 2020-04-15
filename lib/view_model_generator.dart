@@ -4,62 +4,140 @@
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
+import 'package:analyzer/dart/constant/value.dart';
 import 'package:build/build.dart';
 import 'package:flyme_annotation/flyme_annotation.dart';
 import 'package:source_gen/source_gen.dart';
+import 'package:tuple/tuple.dart';
+import 'package:code_builder/code_builder.dart';
+import 'package:dart_style/dart_style.dart';
+
+const _viewModelName = '_\$ViewModel';
+final _viewModelRef = refer('ViewModel');
 
 class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     final list = annotation.objectValue.getField("properties").toListValue();
-    StringBuffer output = StringBuffer();
-    StringBuffer sb = StringBuffer();
+    final viewModelClass = _makeViewModelClass(list);
 
-    output.writeln("class _\$ViewModel extends ViewModel {");
-    list.forEach((itemObj) {
-      final name = itemObj.getField("name").toStringValue();
-      final type = itemObj.getField("type").toTypeValue();
-      final generic = itemObj.getField("generic").toTypeValue();
-
-      final initial =
-          unwrapInitial(type, itemObj.getField("initial").toStringValue());
-
-      if (initial == null) {
-        sb.writeln("$type _$name;");
-      } else if (type.isDartCoreString && initial != null) {
-        sb.writeln("$type _$name = '$initial';");
-      } else {
-        sb.writeln("$type _$name = $initial;");
-      }
-
-      sb.writeln("$type get $name => _$name;");
-      sb.writeln("set $name($type args) {");
-      sb.writeln("  _$name = args;");
-      sb.writeln("  notifyListeners();");
-      sb.writeln("}");
-      sb.writeln("\n");
-
-      output.write(sb.toString().replaceAll("<dynamic>", "<$generic>"));
-      sb.clear();
-    });
-    output.writeln("}");
-
-    return output.toString();
+    final emitter = DartEmitter();
+    return DartFormatter()
+        .format(viewModelClass.accept(emitter).toString())
+        .toString();
   }
 }
 
-dynamic unwrapInitial(DartType type, dynamic value) {
+Class _makeViewModelClass(List<DartObject> list) {
+  final fields = _parseListToTuple(list).item1;
+  final methods = _parseListToTuple(list).item2;
+  return Class(
+    (b) => b
+      ..name = _viewModelName
+      ..extend = _viewModelRef
+      ..fields.addAll(fields)
+      ..methods.addAll(methods),
+  );
+}
+
+Tuple2<List<Field>, List<Method>> _parseListToTuple(List<DartObject> list) {
+  final fields = [];
+  final methods = [];
+  list.forEach((item) {
+    fields.add(_parseItem2Field(item));
+    methods.addAll(_parseItem2Methods(item));
+  });
+
+  return Tuple2<List<Field>, List<Method>>(fields, methods);
+}
+
+String _parsePropertyType(DartObject item) {
+  final propertyType = item.getField("type").toTypeValue();
+  final generic = item.getField("generic").toTypeValue();
+  final generics = item.getField("generics").toListValue();
+
+  var type = '$propertyType';
+  if (generic != null) {
+    type = type.replaceFirst('dynamic', '$generic');
+  } else if (generics != null) {
+    generics.forEach((g) {
+      type = type.replaceFirst('dynamic', '$g');
+    });
+  }
+  return type;
+}
+
+Field _parseItem2Field(DartObject item) {
+  final name = item.getField("name").toStringValue();
+  final propertyType = item.getField("type").toTypeValue();
+
+  final type = _parsePropertyType(item);
+  final initial =
+      _unwrapInitial(propertyType, item.getField("initial").toStringValue());
+
+  return Field((b) {
+    b
+      ..name = '_$name'
+      ..type = refer(type);
+    if (initial.isNotEmpty) {
+      b..assignment = Code(initial);
+    }
+    return b;
+  });
+}
+
+List<Method> _parseItem2Methods(DartObject item) {
+  final name = item.getField("name").toStringValue();
+  final type = _parsePropertyType(item);
+
+  return [
+    _generateGetterMethod(name: name, type: type),
+    _generateSetterMethod(name: name, type: type)
+  ];
+}
+
+Method _generateGetterMethod({String name, String type}) {
+  return Method(
+    (b) => b
+      ..name = name
+      ..lambda = true
+      ..type = MethodType.getter
+      ..body = Code('_$name')
+      ..returns = refer(type),
+  );
+}
+
+Method _generateSetterMethod({String name, String type}) {
+  return Method.returnsVoid(
+    (b) => b
+      ..name = name
+      ..type = MethodType.setter
+      ..requiredParameters.add(
+        Parameter(
+          (b) => b
+            ..name = 'args'
+            ..type = refer(type),
+        ),
+      )
+      ..body = Code('''
+        _$name = args;
+        notifyListeners();
+      '''),
+  );
+}
+
+dynamic _unwrapInitial(DartType type, dynamic value) {
   if (value != null) return value;
 
   if (type.isDartCoreString) {
-    return "";
+    return '';
   } else if (type.isDartCoreBool) {
-    return "false";
+    return 'false';
   } else if (type.isDartCoreNum ||
       type.isDartCoreInt ||
       type.isDartCoreDouble) {
-    return "0";
+    return '0';
   }
   return value;
 }
