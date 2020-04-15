@@ -70,6 +70,7 @@ String _parsePropertyType(DartObject item) {
 
 Field _parseItem2Field(DartObject item) {
   final name = item.getField("name").toStringValue();
+  final description = item.getField("description").toStringValue();
   final propertyType = item.getField("type").toTypeValue();
 
   final type = _parsePropertyType(item);
@@ -86,6 +87,9 @@ Field _parseItem2Field(DartObject item) {
       } else {
         b..assignment = Code(initial);
       }
+    }
+    if (description.isNotEmpty) {
+      b..docs.add(description);
     }
     return b;
   });
