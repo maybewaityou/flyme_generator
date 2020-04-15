@@ -71,7 +71,8 @@ String _parsePropertyType(DartObject item) {
 Field _parseItem2Field(DartObject item) {
   final name = item.getField('name').toStringValue();
   final propertyType = item.getField('type').toTypeValue();
-  // final desc = item.getField('desc').toStringValue();
+  final desc = item.getField('desc').toStringValue();
+  final descs = item.getField('descs').toListValue();
 
   final type = _parsePropertyType(item);
   final initial =
@@ -81,6 +82,8 @@ Field _parseItem2Field(DartObject item) {
     b
       ..name = '_$name'
       ..type = refer(type);
+
+    // set initial value
     if (initial.isNotEmpty) {
       if (propertyType != null && propertyType.isDartCoreString) {
         b..assignment = Code("'$initial'");
@@ -88,6 +91,14 @@ Field _parseItem2Field(DartObject item) {
         b..assignment = Code(initial);
       }
     }
+
+    // set document comment
+    if (desc != null) {
+      b..docs.add('// $desc');
+    } else if (descs != null) {
+      b..docs.addAll(descs.map((d) => '// $d'));
+    }
+
     return b;
   });
 }
