@@ -88,7 +88,6 @@ Field _parseItem2Field(DartObject item) {
         b..assignment = Code(initial);
       }
     }
-    b..docs.add(description ?? 'test');
     return b;
   });
 }
