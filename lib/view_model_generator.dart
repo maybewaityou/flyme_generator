@@ -42,8 +42,8 @@ Class _makeViewModelClass(List<DartObject> list) {
 }
 
 Tuple2<List<Field>, List<Method>> _parseListToTuple(List<DartObject> list) {
-  final fields = [];
-  final methods = [];
+  final fields = List<Field>();
+  final methods = List<Method>();
   list.forEach((item) {
     fields.add(_parseItem2Field(item));
     methods.addAll(_parseItem2Methods(item));
