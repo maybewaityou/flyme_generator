@@ -19,7 +19,7 @@ class ViewModelGenerator extends GeneratorForAnnotation<Properties> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    final list = annotation.objectValue.getField("properties").toListValue();
+    final list = annotation.objectValue.getField('properties').toListValue();
     final viewModelClass = _makeViewModelClass(list);
 
     final emitter = DartEmitter();
@@ -53,9 +53,9 @@ Tuple2<List<Field>, List<Method>> _parseListToTuple(List<DartObject> list) {
 }
 
 String _parsePropertyType(DartObject item) {
-  final propertyType = item.getField("type").toTypeValue();
-  final generic = item.getField("generic").toTypeValue();
-  final generics = item.getField("generics").toListValue();
+  final propertyType = item.getField('type').toTypeValue();
+  final generic = item.getField('generic').toTypeValue();
+  final generics = item.getField('generics').toListValue();
 
   var type = '$propertyType';
   if (generic != null) {
@@ -69,13 +69,13 @@ String _parsePropertyType(DartObject item) {
 }
 
 Field _parseItem2Field(DartObject item) {
-  final name = item.getField("name").toStringValue();
-  final propertyType = item.getField("type").toTypeValue();
-  // final description = item.getField("description").toStringValue();
+  final name = item.getField('name').toStringValue();
+  final propertyType = item.getField('type').toTypeValue();
+  // final description = item.getField('description').toStringValue();
 
   final type = _parsePropertyType(item);
   final initial =
-      _unwrapInitial(propertyType, item.getField("initial").toStringValue());
+      _unwrapInitial(propertyType, item.getField('initial').toStringValue());
 
   return Field((b) {
     b
@@ -93,7 +93,7 @@ Field _parseItem2Field(DartObject item) {
 }
 
 List<Method> _parseItem2Methods(DartObject item) {
-  final name = item.getField("name").toStringValue();
+  final name = item.getField('name').toStringValue();
   final type = _parsePropertyType(item);
 
   return [
