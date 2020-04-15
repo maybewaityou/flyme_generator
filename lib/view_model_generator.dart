@@ -109,7 +109,7 @@ Method _generateGetterMethod({String name, String type}) {
 }
 
 Method _generateSetterMethod({String name, String type}) {
-  return Method.returnsVoid(
+  return Method(
     (b) => b
       ..name = name
       ..type = MethodType.setter
