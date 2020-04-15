@@ -177,7 +177,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d2b0168c39b84a9e0a40a79600a1baa7256a3b72
+      resolved-ref: "7c5841d0941a38b0c2356a8e235030f348cd5cd1"
       url: "https://github.com/maybewaityou/flyme_annotation.git"
     source: git
     version: "0.0.1"
