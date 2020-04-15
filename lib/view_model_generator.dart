@@ -94,9 +94,9 @@ Field _parseItem2Field(DartObject item) {
 
     // set document comment
     if (desc != null) {
-      b..docs.add('// $desc');
+      b..docs.add('  // $desc');
     } else if (descs != null) {
-      b..docs.addAll(descs.map((d) => '// $d'));
+      b..docs.addAll(descs.map((d) => '  // ${d.toStringValue()}'));
     }
 
     return b;
