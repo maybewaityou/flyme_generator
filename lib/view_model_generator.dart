@@ -82,13 +82,13 @@ Field _parseItem2Field(DartObject item) {
       ..name = '_$name'
       ..type = refer(type);
     if (initial.isNotEmpty) {
-      if (propertyType.isDartCoreString) {
+      if (propertyType != null && propertyType.isDartCoreString) {
         b..assignment = Code("'$initial'");
       } else {
         b..assignment = Code(initial);
       }
     }
-    if (description.isNotEmpty) {
+    if (description != null && description.isNotEmpty) {
       b..docs.add(description);
     }
     return b;
