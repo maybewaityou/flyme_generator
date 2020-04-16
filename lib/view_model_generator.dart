@@ -84,14 +84,14 @@ Field _parseItem2Field(DartObject item) {
       ..type = refer(type);
 
     // set initial value
-    if (initial.isNotEmpty) {
+    if (initial.isEmpty) {
+      b..assignment = Code("''");
+    } else {
       if (propertyType != null && propertyType.isDartCoreString) {
         b..assignment = Code("'$initial'");
       } else {
         b..assignment = Code(initial);
       }
-    } else {
-      b..assignment = Code("''");
     }
 
     // set document comment
