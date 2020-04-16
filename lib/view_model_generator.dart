@@ -90,6 +90,8 @@ Field _parseItem2Field(DartObject item) {
       } else {
         b..assignment = Code(initial);
       }
+    } else {
+      b..assignment = Code("''");
     }
 
     // set document comment
