@@ -13,7 +13,7 @@ builders:
     builder_factories: ["routeConfigGeneratorBuilder"]
     build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
-    build_to: cache
+    build_to: source
     # build_extensions: { ".dart": [".config.dart"] }
     # auto_apply: root_package
     # build_to: source
