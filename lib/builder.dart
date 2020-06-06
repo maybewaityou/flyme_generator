@@ -28,8 +28,7 @@ Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 
 /// route generator builder
 Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
-    LibraryBuilder(RouteConfigGenerator(),
-        generatedExtension: '.route_config.dart');
+    LibraryBuilder(RouteConfigGenerator(), generatedExtension: '.config.dart');
 Builder routeGeneratorBuilder(BuilderOptions options) =>
     LibraryBuilder(RouteGenerator(), generatedExtension: '.route.dart');
 

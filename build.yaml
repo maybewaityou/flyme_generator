@@ -11,7 +11,7 @@ builders:
   route_config_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["routeConfigGeneratorBuilder"]
-    build_extensions: { ".dart": [".route_config.dart"] }
+    build_extensions: { ".dart": [".config.dart"] }
     auto_apply: dependents
     build_to: source
     # build_extensions: { ".dart": [".config.dart"] }
