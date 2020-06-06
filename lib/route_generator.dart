@@ -24,7 +24,7 @@ class RouteGenerator implements GeneratorForAnnotation<FRoute> {
 
   @override
   FutureOr<String> generate(LibraryReader library, BuildStep buildStep) async {
-    final values = <String>{};
+    final values = <String>[];
 
     for (var annotatedElement in library.annotatedWith(typeChecker)) {
       final generatedValue = generateForAnnotatedElement(
@@ -55,7 +55,7 @@ class RouteConfigGenerator implements GeneratorForAnnotation<FRouteConfig> {
 
   @override
   FutureOr<String> generate(LibraryReader library, BuildStep buildStep) async {
-    final values = <String>{};
+    final values = <String>[];
 
     for (var annotatedElement in library.annotatedWith(typeChecker)) {
       final generatedValue = generateForAnnotatedElement(
