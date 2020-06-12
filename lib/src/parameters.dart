@@ -72,7 +72,9 @@ Reference _typeToReference(element_type.DartType type) {
     return t.type;
   }
 
-  return type.displayName != null ? refer(type.displayName) : null;
+  return type.getDisplayString() != null
+      ? refer(type.getDisplayString())
+      : null;
 }
 
 FunctionType _functionTypedElementToFunctionType(

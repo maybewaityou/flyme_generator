@@ -64,7 +64,7 @@ class FunctionalWidgetGenerator
     if (function.isAsynchronous ||
         function.isExternal ||
         function.isGenerator ||
-        function.returnType?.displayName != 'Widget') {
+        function.returnType?.getDisplayString() != 'Widget') {
       throw InvalidGenerationSourceError(
         'Invalid prototype. The function must be synchronous, top level, and return a Widget',
         element: function,
@@ -232,7 +232,7 @@ class FunctionalWidgetGenerator
     if (element.type.element is ClassElement) {
       final classElement = element.type.element as ClassElement;
       if (classElement.isEnum) {
-        propertyType = 'EnumProperty<${element.type.displayName}>';
+        propertyType = 'EnumProperty<${element.type.getDisplayString()}>';
       }
     }
     return propertyType;
@@ -328,8 +328,8 @@ class FunctionalWidgetGenerator
     List<TypeParameterElement> typeParameters,
   ) {
     return typeParameters.map((e) {
-      return e.bound?.displayName != null
-          ? refer('${e.displayName} extends ${e.bound.displayName}')
+      return e.bound?.getDisplayString() != null
+          ? refer('${e.displayName} extends ${e.bound.getDisplayString()}')
           : refer(e.displayName);
     });
   }
