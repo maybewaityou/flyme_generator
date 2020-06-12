@@ -37,11 +37,14 @@ class Writer {
     collector.routerMap.forEach(addPage);
 
     final template = new Template(clazzTpl);
-    return template.renderString(<String, dynamic>{
-      'refs': refs,
-      'pages': pages,
-      'routerMap': collector.routerMap.toString(),
-    }).replaceAll('&#x2F;', '/');
+    return template
+        .renderString(<String, dynamic>{
+          'refs': refs,
+          'pages': pages,
+          'routerMap': collector.routerMap.toString(),
+        })
+        .replaceAll('&#x2F;', '/')
+        .replaceAll('&#x27;', '\'');
   }
 }
 
