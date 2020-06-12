@@ -20,7 +20,7 @@ class ApiBuilderGenerator extends GeneratorForAnnotation<Request> {
         final metadatatype = annometadata.runtimeType;
         print("metadatatype is $metadatatype");
         print("metadata type is ${metadata.type.runtimeType}");
-        if (metadata.type.name == "ApiMethod") {
+        if (metadata.type.getDisplayString() == "ApiMethod") {
           String method = metadata.getField("method").toStringValue();
           String url = metadata.getField("url").toStringValue();
           var headerfield = metadata.getField("head");
