@@ -175,12 +175,10 @@ packages:
   flyme_annotation:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "157209e1562fbf41db046ecd34572b3972922b7b"
-      url: "https://github.com/maybewaityou/flyme_annotation.git"
-    source: git
-    version: "0.0.1"
+      name: flyme_annotation
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.3"
   glob:
     dependency: transitive
     description:

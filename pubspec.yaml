@@ -1,18 +1,18 @@
 name: flyme_generator
 description: Generator from Flyme Framework.
 version: 0.0.1
-homepage: https://github.com/maybewaityou/flyme_generator
+homepage: https://github.com/maybewaityou
+documentation: https://github.com/maybewaityou/flyme_generator/blob/master/README.md
+repository: https://github.com/maybewaityou/flyme_generator
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  flyme_annotation:
-    git:
-      url: https://github.com/maybewaityou/flyme_annotation.git
+  flyme_annotation: ^0.0.3
   analyzer: ^0.39.4
   build: ^1.2.2
   build_config: ^0.4.1+1
