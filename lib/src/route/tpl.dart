@@ -1,20 +1,20 @@
 // import 'package:fluro/fluro.dart';
-// {{#refs}}
-// import '{{{path}}}';
-// {{/refs}}
+// {{# refs }}
+// import '{{ path }}';
+// {{/ refs }}
 
 const String clazzTpl = """
 
 class AppRoutesPath {
-  {{#pages}}
-  static const {{{fieldName}}} = {{{url}}};
-  {{/pages}}
+  {{# pages }}
+  static const {{ fieldName }} = {{ url }};
+  {{/ pages }}
 }
 
 final _routesMap = {
-  {{#pages}}
-  AppRoutesPath.{{{fieldName}}}: (params) => {{{page}}},
-  {{/pages}}
+  {{# pages }}
+  AppRoutesPath.{{ fieldName }}: (params) => {{ page }},
+  {{/ pages }}
 };
 
 void setupRoutes(Router router) {

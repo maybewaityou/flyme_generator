@@ -1,7 +1,7 @@
 import 'package:flyme_generator/src/functional.dart';
 import 'package:flyme_generator/src/route/collector.dart';
 import 'package:flyme_generator/src/route/tpl.dart';
-import 'package:mustache4dart/mustache4dart.dart';
+import 'package:mustache_template/mustache_template.dart';
 
 class Writer {
   Collector collector;
@@ -36,7 +36,8 @@ class Writer {
     collector.importList.forEach(addRef);
     collector.routerMap.forEach(addPage);
 
-    return render(clazzTpl, <String, dynamic>{
+    final template = new Template(clazzTpl);
+    return template.renderString(<String, dynamic>{
       'refs': refs,
       'pages': pages,
       'routerMap': collector.routerMap.toString(),
