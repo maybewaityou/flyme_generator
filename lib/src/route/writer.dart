@@ -41,7 +41,7 @@ class Writer {
       'refs': refs,
       'pages': pages,
       'routerMap': collector.routerMap.toString(),
-    });
+    }).replaceAll('&#x2F;', '/');
   }
 }
 

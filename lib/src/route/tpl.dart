@@ -7,13 +7,13 @@ const String clazzTpl = """
 
 class AppRoutesPath {
   {{# pages }}
-  static const {{ fieldName }} = {{ url }};
+  static const {{fieldName}} = '{{url}}';
   {{/ pages }}
 }
 
 final _routesMap = {
   {{# pages }}
-  AppRoutesPath.{{ fieldName }}: (params) => {{ page }},
+  AppRoutesPath.{{fieldName}}: (params) => {{page}},
   {{/ pages }}
 };
 
