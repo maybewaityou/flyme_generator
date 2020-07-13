@@ -29,9 +29,12 @@ Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 
 /// domain registry generator builder
 Builder domainRegistryGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([DomainRegistryGenerator()], 'domain_registry');
+    LibraryBuilder(DomainRegistryGenerator(),
+        generatedExtension: '.registry.dart');
+
 Builder domainInstanceGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([DomainInstanceGenerator()], 'domain_instance');
+    LibraryBuilder(DomainInstanceGenerator(),
+        generatedExtension: '.instance.dart');
 
 /// route generator builder
 // Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
@@ -41,6 +44,7 @@ Builder domainInstanceGeneratorBuilder(BuilderOptions options) =>
 
 Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
     SharedPartBuilder([RouteConfigGenerator()], 'route_config');
+
 Builder routeGeneratorBuilder(BuilderOptions options) =>
     SharedPartBuilder([RouteGenerator()], 'route');
 

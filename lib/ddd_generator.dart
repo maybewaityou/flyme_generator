@@ -9,9 +9,11 @@ import 'package:code_builder/code_builder.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:flyme_annotation/flyme_annotation.dart';
 import 'package:flyme_generator/src/ddd/Collector.dart';
+import 'package:flyme_generator/src/ddd/tpl.dart';
+import 'package:mustache_template/mustache_template.dart';
 import 'package:source_gen/source_gen.dart';
 
-const _DomainRegistry = '_\$DomainRegistry';
+const _DomainRegistry = '\$DomainRegistry';
 final _domainRegistryRef = ListBuilder<Reference>([refer('IDomainRegistry')]);
 
 class DomainInstanceGenerator extends GeneratorForAnnotation<DomainInstance> {
@@ -33,13 +35,26 @@ class DomainRegistryGenerator extends GeneratorForAnnotation<DomainFactory> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    final domainRegistryClass = _makeDomainRegistryClass(collector());
-
-    final emitter = DartEmitter();
-    return DartFormatter()
-        .format(domainRegistryClass.accept(emitter).toString())
-        .toString();
+    return DartFormatter().format(_write(collector())).toString();
   }
+}
+
+String _write(Collector collector) {
+  final template = new Template(clazzTpl);
+  final refs =
+      collector.metaInfoList.map((e) => <String, String>{'path': e.path});
+
+  final domainRegistryClass = _makeDomainRegistryClass(collector);
+  final emitter = DartEmitter();
+  return template
+      .renderString(<String, dynamic>{
+        'refs': refs,
+        'project': collector.project,
+        'content': domainRegistryClass.accept(emitter).toString(),
+      })
+      .replaceAll('&#x2F;', '/')
+      .replaceAll('&#x27;', '\'')
+      .replaceAll('&gt;', '>');
 }
 
 Class _makeDomainRegistryClass(Collector collector) {

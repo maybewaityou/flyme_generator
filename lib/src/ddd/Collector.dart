@@ -6,17 +6,20 @@ class MetaInfo {
   final String className;
   final String path;
   final String returnType;
+  final String project;
 
-  const MetaInfo({this.className, this.path, this.returnType});
+  const MetaInfo({this.className, this.path, this.returnType, this.project});
 
   @override
   String toString() {
-    return 'MetaInfo{className: $className, path: $path, returnType: $returnType}';
+    return 'MetaInfo{className: $className, path: $path, returnType: $returnType, project: $project}';
   }
 }
 
 class Collector {
   List<MetaInfo> metaInfoList = <MetaInfo>[];
+  String project;
+
   void collect(
       ClassElement element, ConstantReader annotation, BuildStep buildStep) {
     final String className = element.name;
@@ -32,13 +35,20 @@ class Collector {
             .trim();
 
     var path = buildStep.inputId.path;
+    var project = 'flyme_app';
     if (buildStep.inputId.path.contains('lib/')) {
       path =
           "package:${buildStep.inputId.package}/${buildStep.inputId.path.replaceFirst('lib/', '')}";
+      project = buildStep.inputId.package;
+      this.project = project;
     }
 
-    final metaInfo =
-        MetaInfo(className: className, path: path, returnType: returnType);
+    final metaInfo = MetaInfo(
+      className: className,
+      path: path,
+      returnType: returnType,
+      project: project,
+    );
     metaInfoList.add(metaInfo);
   }
 

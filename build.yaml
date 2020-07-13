@@ -11,20 +11,20 @@ builders:
   domain_registry_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["domainRegistryGeneratorBuilder"]
-    # build_extensions: { ".dart": [".flyme.dart"] }
-    build_extensions: { ".dart": [".g.dart"] }
+    build_extensions: { ".dart": [".registry.dart"] }
+    #    build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
-    # build_to: source
-    build_to: cache
+    build_to: source
+#    build_to: cache
     applies_builders: ["source_gen|combining_builder"]
   domain_instance_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["domainInstanceGeneratorBuilder"]
-    # build_extensions: { ".dart": [".flyme.dart"] }
-    build_extensions: { ".dart": [".g.dart"] }
+    build_extensions: { ".dart": [".instance.dart"] }
+    # build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
-    # build_to: source
-    build_to: cache
+    build_to: source
+#    build_to: cache
     applies_builders: ["source_gen|combining_builder"]
   route_config_generator_builder:
     import: "package:flyme_generator/builder.dart"
