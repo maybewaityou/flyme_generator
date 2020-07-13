@@ -1,5 +1,6 @@
 const String clazzTpl = """
 import 'package:fluro/fluro.dart';
+import 'package:{{ project }}/common/component/component.dart';
 {{# refs }}
 import '{{ path }}';
 {{/ refs }}

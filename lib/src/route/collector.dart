@@ -10,6 +10,7 @@ class Collector {
   Map<String, List<Map<String, dynamic>>> routerMap =
       <String, List<Map<String, dynamic>>>{};
   List<String> importList = <String>[];
+  String project;
 
   Map<String, DartObject> toStringDartObjectMap(
       Map<DartObject, DartObject> map) {
@@ -41,10 +42,12 @@ class Collector {
       aliasList.forEach(addEntry);
     }
 
+    project = 'flyme_app';
     if (buildStep.inputId.path.contains('lib/')) {
       print(buildStep.inputId.path);
       importClazz(
           "package:${buildStep.inputId.package}/${buildStep.inputId.path.replaceFirst('lib/', '')}");
+      project = buildStep.inputId.package;
     } else {
       importClazz("${buildStep.inputId.path}");
     }

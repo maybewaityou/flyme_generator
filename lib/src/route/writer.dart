@@ -5,6 +5,7 @@ import 'package:mustache_template/mustache_template.dart';
 
 class Writer {
   Collector collector;
+
   Writer(this.collector);
 
   String write() {
@@ -41,6 +42,7 @@ class Writer {
         .renderString(<String, dynamic>{
           'refs': refs,
           'pages': pages,
+          'project': collector.project,
           'routerMap': collector.routerMap.toString(),
         })
         .replaceAll('&#x2F;', '/')

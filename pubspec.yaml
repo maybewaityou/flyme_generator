@@ -1,6 +1,6 @@
 name: flyme_generator
 description: Generator from Flyme Framework. Flyme Framework is a cross-platform framework based on flutter.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/maybewaityou
 documentation: https://github.com/maybewaityou/flyme_generator/blob/master/README.md
 repository: https://github.com/maybewaityou/flyme_generator
