@@ -19,6 +19,7 @@ dependencies:
   code_builder: ^3.2.1
   dart_style: ^1.3.3
   mustache_template: ^1.0.0+1
+  built_collection: ^4.3.2
 
 dev_dependencies:
   flutter_test:
