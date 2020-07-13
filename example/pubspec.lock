@@ -181,6 +181,13 @@ packages:
       url: "https://github.com/maybewaityou/flyme_annotation.git"
     source: git
     version: "0.0.3"
+  flyme_generator:
+    dependency: "direct dev"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.2"
   glob:
     dependency: transitive
     description:
