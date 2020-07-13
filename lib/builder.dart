@@ -37,16 +37,16 @@ Builder domainInstanceGeneratorBuilder(BuilderOptions options) =>
         generatedExtension: '.instance.dart');
 
 /// route generator builder
-// Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
-//     LibraryBuilder(RouteConfigGenerator(), generatedExtension: '.config.dart');
-// Builder routeGeneratorBuilder(BuilderOptions options) =>
-//     LibraryBuilder(RouteGenerator(), generatedExtension: '.route.dart');
-
 Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([RouteConfigGenerator()], 'route_config');
-
+    LibraryBuilder(RouteConfigGenerator(), generatedExtension: '.config.dart');
 Builder routeGeneratorBuilder(BuilderOptions options) =>
-    SharedPartBuilder([RouteGenerator()], 'route');
+    LibraryBuilder(RouteGenerator(), generatedExtension: '.route.dart');
+
+//Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
+//    SharedPartBuilder([RouteConfigGenerator()], 'route_config');
+//
+//Builder routeGeneratorBuilder(BuilderOptions options) =>
+//    SharedPartBuilder([RouteGenerator()], 'route');
 
 /// functional widget generator builder
 Builder functionalWidgetGeneratorBuilder(BuilderOptions options) {
