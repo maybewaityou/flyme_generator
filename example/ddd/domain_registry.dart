@@ -1,4 +1,6 @@
 import 'package:flyme_annotation/flyme_annotation.dart';
 
-@domainFactory
+part 'domain_registry.g.dart';
+
+@DomainFactory()
 class DomainRegistry {}

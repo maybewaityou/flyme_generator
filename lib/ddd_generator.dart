@@ -20,6 +20,8 @@ class DomainRegistryGenerator extends GeneratorForAnnotation<DomainFactory> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
+    print('== annotation.objectValue ===>>>> ${annotation.objectValue}');
+
     final list = annotation.objectValue.getField('properties').toListValue();
     final registryClass = _makeDomainRegistryClass(list);
 
