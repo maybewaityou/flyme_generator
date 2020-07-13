@@ -56,9 +56,7 @@ Class _makeDomainRegistryClass(Collector collector) {
 
 Method _generateGetterMethod(MetaInfo metaInfo) {
   final className = metaInfo.returnType;
-//  final returnType = metaInfo.returnType;
-  final methodName =
-      className.substring(0, 1).toLowerCase() + className.substring(1);
+  final methodName = _methodNameByClassName(className);
   return Method(
     (b) => b
       ..name = methodName
@@ -66,4 +64,15 @@ Method _generateGetterMethod(MetaInfo metaInfo) {
       ..body = Code('getIt.get()')
       ..returns = refer(className),
   );
+}
+
+String _methodNameByClassName(String className) {
+  if (className.startsWith('I')) {
+    RegExp regExp = new RegExp(r"[A-Z]");
+    final match = regExp.hasMatch(className.substring(1, 2));
+    if (match) {
+      return className.substring(1, 2).toLowerCase() + className.substring(2);
+    }
+  }
+  return className.substring(0, 1).toLowerCase() + className.substring(1);
 }
