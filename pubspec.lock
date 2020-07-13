@@ -175,11 +175,9 @@ packages:
   flyme_annotation:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "94d84e35fa6efc1e3018404cc8741e3091721172"
-      url: "https://github.com/maybewaityou/flyme_annotation.git"
-    source: git
+      path: "/Users/MeePwn/Desktop/MeePwn/Flutter/source/flyme/flyme_annotation/"
+      relative: false
+    source: path
     version: "0.0.3"
   glob:
     dependency: transitive

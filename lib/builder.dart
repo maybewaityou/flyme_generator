@@ -30,6 +30,8 @@ Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 /// domain registry generator builder
 Builder domainRegistryGeneratorBuilder(BuilderOptions options) =>
     SharedPartBuilder([DomainRegistryGenerator()], 'domain_registry');
+Builder domainInstanceGeneratorBuilder(BuilderOptions options) =>
+    SharedPartBuilder([DomainInstanceGenerator()], 'domain_instance');
 
 /// route generator builder
 // Builder routeConfigGeneratorBuilder(BuilderOptions options) =>

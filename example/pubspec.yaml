@@ -10,7 +10,7 @@ dependencies:
 
   #  flyme_annotation: ^0.0.3
   flyme_annotation:
-    git: https://github.com/maybewaityou/flyme_annotation.git
+    path: /Users/MeePwn/Desktop/MeePwn/Flutter/source/flyme/flyme_annotation/
   analyzer: ^0.39.4
   build: ^1.2.2
   build_config: ^0.4.1+1
