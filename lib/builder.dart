@@ -13,11 +13,12 @@
 library flyme_generator.builder;
 
 import 'package:build/build.dart';
-import 'package:source_gen/source_gen.dart';
-import 'package:flyme_generator/src/utils.dart';
-import 'package:flyme_generator/route_generator.dart';
-import 'package:flyme_generator/view_model_generator.dart';
+import 'package:flyme_generator/ddd_generator.dart';
 import 'package:flyme_generator/function_to_widget_class.dart';
+import 'package:flyme_generator/route_generator.dart';
+import 'package:flyme_generator/src/utils.dart';
+import 'package:flyme_generator/view_model_generator.dart';
+import 'package:source_gen/source_gen.dart';
 
 /// view model generator builder
 Builder viewModelGeneratorBuilder(BuilderOptions options) =>
@@ -25,6 +26,10 @@ Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 
 // Builder viewModelGeneratorBuilder(BuilderOptions options) =>
 //     PartBuilder([ViewModelGenerator()], '.flyme.dart');
+
+/// domain registry generator builder
+Builder domainRegistryGeneratorBuilder(BuilderOptions options) =>
+    SharedPartBuilder([DomainRegistryGenerator()], 'domain_registry');
 
 /// route generator builder
 // Builder routeConfigGeneratorBuilder(BuilderOptions options) =>

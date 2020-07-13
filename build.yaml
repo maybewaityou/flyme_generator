@@ -8,6 +8,15 @@ builders:
     # build_to: source
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]
+  domain_registry_generator_builder:
+    import: "package:flyme_generator/builder.dart"
+    builder_factories: ["domainRegistryGeneratorBuilder"]
+    # build_extensions: { ".dart": [".flyme.dart"] }
+    build_extensions: { ".dart": [".g.dart"] }
+    auto_apply: dependents
+    # build_to: source
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
   route_config_generator_builder:
     import: "package:flyme_generator/builder.dart"
     builder_factories: ["routeConfigGeneratorBuilder"]
@@ -41,6 +50,8 @@ targets:
   $default:
     builders:
       flyme_generator|view_model_generator_builder:
+        enabled: true
+      flyme_generator|domain_registry_generator_builder:
         enabled: true
       flyme_generator|route_config_generator_builder:
         enabled: true
