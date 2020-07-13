@@ -31,8 +31,6 @@ class Collector {
             .replaceAll(')', '')
             .trim();
 
-    print('== returnType ===>>>> $returnType');
-
     var path = buildStep.inputId.path;
     if (buildStep.inputId.path.contains('lib/')) {
       path =
