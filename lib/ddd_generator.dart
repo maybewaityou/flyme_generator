@@ -55,7 +55,8 @@ Class _makeDomainRegistryClass(Collector collector) {
 }
 
 Method _generateGetterMethod(MetaInfo metaInfo) {
-  final className = metaInfo.className;
+  final className = metaInfo.returnType;
+//  final returnType = metaInfo.returnType;
   final methodName =
       className.substring(0, 1).toLowerCase() + className.substring(1);
   return Method(

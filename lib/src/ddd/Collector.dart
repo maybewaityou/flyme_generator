@@ -5,13 +5,13 @@ import 'package:source_gen/source_gen.dart';
 class MetaInfo {
   final String className;
   final String path;
-  final String supertype;
+  final String returnType;
 
-  const MetaInfo({this.className, this.path, this.supertype});
+  const MetaInfo({this.className, this.path, this.returnType});
 
   @override
   String toString() {
-    return 'MetaInfo{className: $className, path: $path, supertype: $supertype}';
+    return 'MetaInfo{className: $className, path: $path, returnType: $returnType}';
   }
 }
 
@@ -20,16 +20,27 @@ class Collector {
   void collect(
       ClassElement element, ConstantReader annotation, BuildStep buildStep) {
     final String className = element.name;
+    final type = annotation.objectValue.getField('as').toString();
+    final returnType = type.contains("null")
+        ? className
+        : type
+            .toString()
+            .replaceAll('Type', '')
+            .replaceAll('*', '')
+            .replaceAll('(', '')
+            .replaceAll(')', '')
+            .trim();
+
+    print('== returnType ===>>>> $returnType');
 
     var path = buildStep.inputId.path;
     if (buildStep.inputId.path.contains('lib/')) {
       path =
           "package:${buildStep.inputId.package}/${buildStep.inputId.path.replaceFirst('lib/', '')}";
     }
-    print('== element.interfaces ===>>>> ${element.interfaces}');
-//    print('== annotation.objectValue ===>>>> ${annotation.objectValue}');
-    print('== annotation.listValue ===>>>> ${annotation.listValue}');
-    final metaInfo = MetaInfo(className: className, path: path, supertype: '');
+
+    final metaInfo =
+        MetaInfo(className: className, path: path, returnType: returnType);
     metaInfoList.add(metaInfo);
   }
 
