@@ -39,6 +39,12 @@ class Collector {
     if (buildStep.inputId.path.contains('lib/')) {
       path =
           "package:${buildStep.inputId.package}/${buildStep.inputId.path.replaceFirst('lib/', '')}";
+
+      if (path.contains('infrastructure/repository/')) {
+        int index = path.indexOf('infrastructure/repository/');
+        path = path.substring(0, index) + 'domain/repository/repository.dart';
+      }
+
       project = buildStep.inputId.package;
       this.project = project;
     }
