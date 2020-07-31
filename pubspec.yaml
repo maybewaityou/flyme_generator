@@ -11,7 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flyme_annotation: ^0.1.0
+#  flyme_annotation: ^0.1.0
+  flyme_annotation:
+    path: /Users/MeePwn/Desktop/MeePwn/Flutter/source/flyme/flyme_annotation
   analyzer: ^0.39.4
   build: ^1.2.2
   build_config: ^0.4.1+1
