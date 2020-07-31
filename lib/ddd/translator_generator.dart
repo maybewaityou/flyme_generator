@@ -12,23 +12,26 @@ class TranslatorGenerator extends GeneratorForAnnotation<Translator> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    final name = element.name;
-    print('== name ===>>>> $name');
+    final className = element.name;
+    final translatorClassName = '${className}Translator';
 
-    final dataModelTranslator = _makeClass(name);
-    return DartFormatter().format(dataModelTranslator).toString();
+    final translatorCode = _makeClass(
+      className: className,
+      translatorClassName: translatorClassName,
+    );
+    return DartFormatter().format(translatorCode).toString();
   }
 }
 
-String _makeClass(String name) {
+String _makeClass({String className, String translatorClassName}) {
   return '''
-class ${name}Translator extends DataModelTranslator<$name> {
-  const ${name}Translator._();
-  factory ${name}Translator() => ${name}Translator._();
+class $translatorClassName extends DataModelTranslator<$className> {
+  const $translatorClassName._();
+  factory $translatorClassName() => $translatorClassName._();
 
   @override
-  $name translate(Map<String, dynamic> json) {
-    return $name.fromJson(json);
+  $className translate(Map<String, dynamic> json) {
+    return $className.fromJson(json);
   }
 }
   ''';
