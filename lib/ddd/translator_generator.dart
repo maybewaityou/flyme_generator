@@ -8,7 +8,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:flyme_annotation/flyme_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
-class TranslatorGenerator extends GeneratorForAnnotation<Da> {
+class TranslatorGenerator extends GeneratorForAnnotation<Translator> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
