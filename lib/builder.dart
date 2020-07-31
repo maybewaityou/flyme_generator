@@ -13,7 +13,7 @@
 library flyme_generator.builder;
 
 import 'package:build/build.dart';
-import 'package:flyme_generator/ddd_generator.dart';
+import 'package:flyme_generator/ddd/ddd_generator.dart';
 import 'package:flyme_generator/function_to_widget_class.dart';
 import 'package:flyme_generator/route_generator.dart';
 import 'package:flyme_generator/src/utils.dart';
@@ -35,6 +35,10 @@ Builder domainRegistryGeneratorBuilder(BuilderOptions options) =>
 Builder domainInstanceGeneratorBuilder(BuilderOptions options) =>
     LibraryBuilder(DomainInstanceGenerator(),
         generatedExtension: '.instance.dart');
+
+/// data model translator generator builder
+Builder dataModelTranslatorGeneratorBuilder(BuilderOptions options) =>
+    SharedPartBuilder([ViewModelGenerator()], 'view_model');
 
 /// route generator builder
 Builder routeConfigGeneratorBuilder(BuilderOptions options) =>
