@@ -37,7 +37,7 @@ String decamelize(String key) {
     if (s.length > 1 && !key.endsWith(s)) {
       var s1 = s.substring(0, s.length - 1).toLowerCase();
       var s2 = s.substring(s.length - 1, s.length).toLowerCase();
-      return '_${s1}_${s2}';
+      return '_${s1}_$s2}';
     } else {
       return '_' + s.toLowerCase();
     }
